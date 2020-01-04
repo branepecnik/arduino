@@ -50,7 +50,8 @@ unsigned long startT=0;
  unsigned long T13Count;
  unsigned long T14Count;
  unsigned long T15Count;
-
+ int T21Count; 
+ bool ugasnil=false;
  
 
 void onPress(Hardware::Button& sender)
@@ -196,11 +197,12 @@ T_Pisoar->id = 13;
   TaskMgr.add(8, R_Vent_WCLoop);
   TaskMgr.add(9, R_Roleta_GorLoop);   
   TaskMgr.add(10, R_Roleta_DolLoop);
-  TaskMgr.add(11, R_SplakMLoop);   
+   
   TaskMgr.add(12, R_SplakVLoop);   
   TaskMgr.add(13, R_pisoarLoop);
  */ TaskMgr.add(14, BereTipke); 
   TaskMgr.add(15, Print); 
+  TaskMgr.add(11, R_SplakMLoop);  
 
   // TaskMgr.add(14, R_SplakVDLoop);
   //TaskMgr.add(12, R_SplakMDLoop); 
@@ -255,6 +257,29 @@ void R_TalGretLoop() {
   }
   if (trenutniT - startT > (T2Count*2000)){
     digitalWrite(R_TalGret, LOW);   
+  }
+}
+
+void R_SplakMLoop() {
+  unsigned long trenutniT = millis(); 
+  
+  if (globalgumb == 11){
+         digitalWrite(R_SplakMG, HIGH);
+         globalgumb = 0; 
+         trenutniT = millis(); 
+         startT = trenutniT;  
+         T11Count = globalcount;
+  }
+  if (trenutniT - startT > (T11Count*2000) && digitalRead(R_SplakMG)){
+    ugasnil=true;
+    digitalWrite(R_SplakMG, LOW);   
+  }
+  if (trenutniT - startT > (T11Count*2000 + 250) && ugasnil){
+    digitalWrite(R_SplakMD, HIGH);   
+  }
+  if (trenutniT - startT > (T11Count*4000+250) && digitalRead(R_SplakMD)){
+    digitalWrite(R_SplakMD, LOW);
+    ugasnil = false;   
   }
 }
 /*
@@ -373,21 +398,9 @@ void R_Roleta_DolLoop() {
     digitalWrite(R_Roleta_Dol, LOW);   
   }
 }
+*/
 
-void R_SplakMLoop() {
-  trenutniT = millis(); 
-  if (globalgumb == 11){
-         digitalWrite(R_SplakMG  , HIGH);
-         globalgumb = 0; 
-         trenutniT = millis(); 
-         startT = trenutniT;  
-         T11Count = globalcount;
-  }
-  if (trenutniT - startT > (T11Count*2000)){
-    digitalWrite(R_SplakMG, LOW);   
-  }
-}
-
+/*
 void R_SplakVLoop() {
   trenutniT = millis(); 
   if (globalgumb == 12){
