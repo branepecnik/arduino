@@ -35,7 +35,21 @@ Hardware::Button *T_Pisoar = new Hardware::Button(41, false);
 int globalgumb=0;
 int globalcount=0;
 unsigned long startT=0;
- unsigned long Tipka1Count;
+unsigned long startT1=0;
+unsigned long startT2=0;
+unsigned long startT3=0;
+unsigned long startT4=0;
+unsigned long startT5=0;
+unsigned long startT6=0;
+unsigned long startT7=0;
+unsigned long startT8=0;
+unsigned long startT9=0;
+unsigned long startT10=0;
+unsigned long startT11=0;
+unsigned long startT12=0;
+unsigned long startT13=0;
+unsigned long startT14=0;
+ unsigned long Tipka1_nx;
  unsigned long Tipka2_nx;
  unsigned long Tipka3_nx;
  unsigned long Tipka4_nx;
@@ -50,8 +64,9 @@ unsigned long startT=0;
  unsigned long Tipka13_nx;
  unsigned long Tipka14_nx;
  unsigned long Tipka15_nx;
- int T21Count; 
- bool ugasnil=false;
+
+ bool ugasnil_V =false;
+ bool ugasnil_M =false;
  
 
 void onPress(Hardware::Button& sender)
@@ -237,10 +252,10 @@ void R_VentLowLoop() {
      digitalWrite(R_VentLow, HIGH);
      globalgumb = 0; 
      trenutniT = millis(); 
-     startT = trenutniT;  
-     Tipka1Count = globalcount;
+     startT1 = trenutniT;  
+     Tipka1_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka1Count*2000)){
+  if (trenutniT - startT1 > (Tipka1_nx*2000)){
     digitalWrite(R_VentLow, LOW);   
   }
   
@@ -252,35 +267,15 @@ void R_TalGretLoop() {
      digitalWrite(R_TalGret, HIGH);
      globalgumb = 0; 
      trenutniT = millis(); 
-     startT = trenutniT;  
+     startT2 = trenutniT;  
      Tipka2_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka2_nx*2000)){
+  if (trenutniT - startT2 > (Tipka2_nx*2000)){
     digitalWrite(R_TalGret, LOW);   
   }
 }
 
-void R_SplakMLoop() {
-  unsigned long trenutniT = millis(); 
-  if (globalgumb == 11){
-         digitalWrite(R_SplakMG, HIGH);
-         globalgumb = 0; 
-         trenutniT = millis(); 
-         startT = trenutniT;  
-         Tipka11_nx = globalcount;
-  }
-  if (trenutniT - startT > (Tipka11_nx/Tipka11_nx*700) && digitalRead(R_SplakMG)){
-    ugasnil=true;
-    digitalWrite(R_SplakMG, LOW);   
-  }
-  if (trenutniT - startT > (Tipka11_nx/Tipka11_nx*700 + 120) && ugasnil){
-    digitalWrite(R_SplakMD, HIGH);   
-  }
-  if (trenutniT - startT > (Tipka11_nx/Tipka11_nx*1400+120) && digitalRead(R_SplakMD)){
-    digitalWrite(R_SplakMD, LOW);
-    ugasnil = false;   
-  }
-}
+
 
 
 void R_LucLoop() {
@@ -289,10 +284,10 @@ void R_LucLoop() {
          digitalWrite(R_Luc, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT3 = trenutniT;  
          Tipka3_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka3_nx*2000)){
+  if (trenutniT - startT3 > (Tipka3_nx*2000)){
     digitalWrite(R_Luc, LOW);   
   }
 }
@@ -303,10 +298,10 @@ void R_LedLoop() {
          digitalWrite(R_Led, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT4 = trenutniT;  
          Tipka4_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka4_nx*2000)){
+  if (trenutniT - startT4 > (Tipka4_nx*2000)){
     digitalWrite(R_Led, LOW);   
   }
 }
@@ -317,10 +312,10 @@ void R_InfraLoop() {
          digitalWrite(R_Infra, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT5 = trenutniT;  
          Tipka5_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka5_nx*2000)){
+  if (trenutniT - startT5 > (Tipka5_nx*2000)){
     digitalWrite(R_Infra, LOW);   
   }
 }
@@ -331,10 +326,10 @@ void R_PecLoop() {
          digitalWrite(R_Pec, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT6 = trenutniT;  
          Tipka6_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka6_nx*2000)){
+  if (trenutniT - startT6 > (Tipka6_nx*2000)){
     digitalWrite(R_Pec, LOW);   
   }
 }
@@ -345,10 +340,10 @@ void R_VentLoop() {
          digitalWrite(R_Vent, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT7 = trenutniT;  
          Tipka7_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka7_nx*2000)){
+  if (trenutniT - startT7 > (Tipka7_nx*2000)){
     digitalWrite(R_Vent, LOW);   
   }
 }
@@ -359,10 +354,10 @@ void R_Vent_WCLoop() {
          digitalWrite(R_Vent_WC, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT8 = trenutniT;  
          Tipka8_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka8_nx*2000)){
+  if (trenutniT - startT8 > (Tipka8_nx*2000)){
     digitalWrite(R_Vent_WC, LOW);   
   }
 }
@@ -373,10 +368,10 @@ void R_Roleta_GorLoop() {
          digitalWrite(R_Roleta_Gor, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT9 = trenutniT;  
          Tipka9_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka9_nx*2000)){
+  if (trenutniT - startT9 > (Tipka9_nx*2000)){
     digitalWrite(R_Roleta_Gor, LOW);   
   }
 }
@@ -387,27 +382,56 @@ void R_Roleta_DolLoop() {
          digitalWrite(R_Roleta_Dol, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT10 = trenutniT;  
          Tipka10_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka10_nx*2000)){
+  if (trenutniT - startT10 > (Tipka10_nx*2000)){
     digitalWrite(R_Roleta_Dol, LOW);   
   }
 }
 
-
+void R_SplakMLoop() {
+  unsigned long trenutniT = millis();
+  if (globalgumb == 11){
+         digitalWrite(R_SplakMG, HIGH);
+         globalgumb = 0;
+         trenutniT = millis();
+         startT11 = trenutniT;
+         Tipka11_nx = globalcount;
+  }
+  
+  if (trenutniT - startT11 > (700) && digitalRead(R_SplakMG)){
+    ugasnil_M=true;
+    digitalWrite(R_SplakMG, LOW);
+  }
+  if (trenutniT - startT11 > (820) && ugasnil_M){
+    digitalWrite(R_SplakMD, HIGH);
+  }
+  if (trenutniT - startT11 > (1520) && digitalRead(R_SplakMD)){
+    digitalWrite(R_SplakMD, LOW);
+    ugasnil_M = false;
+  }
+}
 
 void R_SplakVLoop() {
-  unsigned long trenutniT = millis(); 
+  unsigned long trenutniT = millis();
   if (globalgumb == 12){
          digitalWrite(R_SplakVG, HIGH);
-         globalgumb = 0; 
-         trenutniT = millis(); 
-         startT = trenutniT;  
-         Tipka12_nx = globalcount;
+         globalgumb = 0;
+         trenutniT = millis();
+         startT12 = trenutniT;
+         //Tipka12_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka12_nx*2000)){
-    digitalWrite(R_SplakVG, LOW);   
+  if (trenutniT - startT12 > (700) && digitalRead(R_SplakVG)){
+    ugasnil_V=true;
+    digitalWrite(R_SplakVG, LOW);
+  }
+  if (trenutniT - startT12 > (820) && ugasnil_V){
+    digitalWrite(R_SplakVD, HIGH);
+  }
+  if (trenutniT - startT12 > (1520) && digitalRead(R_SplakVD)){
+    digitalWrite(R_SplakVD, LOW);
+    ugasnil_V = false;
   }
 }
 
@@ -417,10 +441,10 @@ void R_pisoarLoop() {
          digitalWrite(R_Pisoar, HIGH);
          globalgumb = 0; 
          trenutniT = millis(); 
-         startT = trenutniT;  
+         startT13 = trenutniT;  
          Tipka13_nx = globalcount;
   }
-  if (trenutniT - startT > (Tipka13_nx*2000)){
+  if (trenutniT - startT13 > (Tipka13_nx*2000)){
     digitalWrite(R_Pisoar, LOW);   
   }
 }
@@ -444,7 +468,7 @@ void R_pisoarLoop() {
  // Serial.println(startT);
    
 //Serial.println(globalcount);
-//Serial.println(Tipka1Count);   
+//Serial.println(Tipka1_nx);   
 //delay (310);  
  //  Serial.println(trenutniT);
  // Serial.println(startT);
