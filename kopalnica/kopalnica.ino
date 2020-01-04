@@ -34,10 +34,7 @@ Hardware::Button *T_Pisoar = new Hardware::Button(41, false);
 
 int globalgumb=0;
 int globalcount=0;
-
- 
- unsigned long startT;
-
+unsigned long startT=0;
  unsigned long T1Count;
  unsigned long T2Count;
  unsigned long T3Count;
@@ -233,8 +230,7 @@ void Print() {
 }
   
 void R_VentLowLoop() {
-  int trenutniT = millis(); 
- 
+  unsigned long trenutniT = millis(); 
   if (globalgumb == 1){
      digitalWrite(R_VentLow, HIGH);
      globalgumb = 0; 
@@ -249,8 +245,7 @@ void R_VentLowLoop() {
 }
 
 void R_TalGretLoop() {
-  int trenutniT = millis(); 
-  
+  unsigned long trenutniT = millis(); 
   if (globalgumb == 2){
      digitalWrite(R_TalGret, HIGH);
      globalgumb = 0; 
