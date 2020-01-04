@@ -1,13 +1,5 @@
-
-
-
-// kopalnica spodaj: zakasnitve stikal, roleta, WC, pisoar 
 #include <TaskManager.h>
 #include "Button.h"
-
-
-
-
 
 const unsigned long R_VentLow  =26;
 const unsigned long R_TalGret  =27;
@@ -67,25 +59,18 @@ int globalcount=0;
 
 void onPress(Hardware::Button& sender)
 {
-  //Serial.print(" kratka ");
-  //Serial.println(sender.id);
   globalcount=1;
   globalgumb=sender.id;
 }
 
 void onLongPress(Hardware::Button& sender)
 {
-  //Serial.print(" dolga ");
- //Serial.println(sender.id);
   globalgumb = sender.id;
   globalcount=0;
 }
 
 void onMultiplePress(Hardware::Button& sender)
 {
- // Serial.print(sender.pressCount);
-  //Serial.print(" -X kratka ");
- //Serial.println(sender.id);
   globalcount=sender.pressCount;
   globalgumb=sender.id;
 }
@@ -172,20 +157,6 @@ T_Pisoar->id = 13;
   T_Pisoar->onLongPress = &onLongPress;
   T_Pisoar->onMultiplePress = &onMultiplePress;
 
-  
-//optional settings
- 
- /* T_VentLow.setPressTimeout(600);
-  T_VentLow.setLongPressTimeout(1000);
-  T_VentLow.setMultiPressTimeout(260);*/
-
- /* T_TalGretje->setPressTimeout(600);
-  T_TalGretje->setLongPressTimeout(1000);
-  T_TalGretje->setMultiPressTimeout(260);*/
-
-
-// trenutniT = millis();  //initial start time
-
 
   pinMode(R_VentLow, OUTPUT);
   pinMode(R_TalGret, OUTPUT);
@@ -238,9 +209,8 @@ T_Pisoar->id = 13;
   // TaskMgr.add(14, R_SplakVDLoop);
   //TaskMgr.add(12, R_SplakMDLoop); 
 }
-//
-// note what is missing:  void loop() {}
-//
+
+
 void BereTipke() {
   T_VentLow.update();
   T_TalGretje->update();
@@ -260,19 +230,8 @@ void BereTipke() {
 void Print() {
   Serial.println(globalgumb);
   Serial.println(globalcount);
-  //Serial.println(trenutniT);
-  //Serial.println(startT);
   TaskMgr.yieldDelay(700);
 }
-//  Serial.println(globalgumb);
-  // Serial.println(globalcount);
-   //Serial.println(trenutniT);
-   //Serial.println(startT);
-  // Serial.println(T1Count*4000);
-  // Serial.println(T1Count);
-//unsigned long trenutniT;
- //unsigned long startT;
-
   
 void R_VentLowLoop() {
   int trenutniT = millis(); 
