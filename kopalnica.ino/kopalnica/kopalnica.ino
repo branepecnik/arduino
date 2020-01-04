@@ -32,7 +32,6 @@ Hardware::Button *T_SplakMali = new Hardware::Button(52, false);
 Hardware::Button *T_SplakVeliki = new Hardware::Button(53, false);
 Hardware::Button *T_Pisoar = new Hardware::Button(41, false);
 
-
 int globalgumb=0;
 int globalcount=0;
 
